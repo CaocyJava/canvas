@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <canvas id="star" width="1000" height="1000" style="background-color: #000">
+        您的浏览器不支持canvas标签
+    </canvas>
+</body>
+<script>
+    var canvas = document.getElementById("star");
+    var flag=0;
+    function earth(){
+        var star = canvas.getContext("2d");
+        star.clearRect(0,0,1000,1000);
+        //轨道
+        star.strokeStyle="white";
+        star.beginPath();
+        star.arc(500,500,100,0,360,false);
+        star.closePath();
+        star.stroke();
+        //太阳
+        star.beginPath();
+        star.arc(500,500,20,0,360,false);
+        star.closePath();
+        var sunColor = star.createRadialGradient(500,500,0,500,500,20);
+        sunColor.addColorStop(0,"yellow");
+        sunColor.addColorStop(1,"red");
+        star.fillStyle=sunColor;
+        star.fill();
+        //地球
+        star.save();
+        star.translate(500,500);
+        star.rotate(flag*365/360*Math.PI/180);
+        star.beginPath();
+        star.arc(0,-100,10,0,360,false);
+        star.closePath();
+        var earthColor = star.createRadialGradient(0,-100,0,0,-100,10);
+        earthColor.addColorStop(0,"#78B1E8");
+        earthColor.addColorStop(1,"#050C12");
+        star.fillStyle=earthColor;
+        star.fill();
+        star.restore();
+        flag++;
+    }
+    earth();
+    setInterval(earth,10);
+</script>
+</html>

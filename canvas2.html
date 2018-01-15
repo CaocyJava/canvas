@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body style="margin: 0">
+<canvas id="draw" width="500px" height="500px" style="border:1px solid red">
+    浏览器不支持
+</canvas>
+<button onclick="tt=setInterval(drawBar,100)">开始</button>
+<button onclick="clearInterval(tt)">结束</button>
+</body>
+<script type="text/javascript">
+    var a = document.getElementById("draw");
+    var img = a.getContext("2d");
+    var x = 20;
+    var width = 500;
+    var height = 500;
+    var exp=10;//像素移动的位置
+    function drawBar(){
+        img.clearRect(0,0,width,height);
+        img.fillStyle="red";
+        img.beginPath();
+        img.arc(200,200,x,0,Math.PI*2,1);
+        img.closePath();
+        img.fill();
+        x=x+exp;
+        if(x==width||x==0){
+            exp=exp*(-1);
+        }
+    }
+</script>
+</html>

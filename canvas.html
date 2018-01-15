@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="easeljs-0.7.1.min.js" rel="stylesheet">
+</head>
+<body style="margin: 0">
+    <canvas id="draw" width="500px" height="500px" onmousemove="movexy(event)" style="border:1px solid red">
+        浏览器不支持
+    </canvas>
+    <div id="mouse"></div>
+</body>
+<script type="text/javascript">
+    var a = document.getElementById("draw");
+    var img = a.getContext("2d");
+    //画矩形
+    img.fillStyle="blue";
+    img.fillRect(10,10,200,200);
+    img.fillStyle="rgba(0,0,255,0.2)";
+    img.fillRect(150,150,300,300);
+    //划线
+    img.moveTo(250,10);
+    img.lineTo(400,30);
+    img.lineTo(300,30);
+    img.strokeStyle ="red";
+    img.stroke();
+    //画圆
+    img.beginPath();
+    img.arc(300,100,20,0,Math.PI*2);
+    img.closePath();
+    img.fill();
+    //渐变色
+    var grd = img.createLinearGradient(300,50,475,50);//渐变色的区域
+    grd.addColorStop(0,"yellow");
+    grd.addColorStop(0.5,"black");
+    grd.addColorStop(1,"blue");
+    img.fillStyle=grd;
+    img.fillRect(300,50,475,50);
+
+    //清除画布
+    img.clearRect(0,0,500,500);
+
+    function movexy(e){
+        x= e.clientX;
+        y= e.clientY;
+        document.getElementById("mouse").innerHTML="X坐标："+x+"Y坐标："+y ;
+    }
+</script>
+</html>

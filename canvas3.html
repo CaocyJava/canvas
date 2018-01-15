@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="jquery.js"></script>
+</head>
+<body>
+    <canvas id="draw" width="500px" height="500px" style="border:1px solid red">
+        浏览器不支持
+    </canvas>
+    <button onclick="clearr()">清除</button>
+</body>
+<script>
+    var a = document.getElementById("draw");
+    var img = a.getContext("2d");
+    var flag = false;
+    img.lineWidth=5;
+    img.strokeStyle="red";
+
+
+    $("#draw").mousedown(function(e){
+        var mouseX = e.pageX - this.offsetLeft;
+        var mouseY = e.pageY - this.offsetTop;
+        img.beginPath();
+        flag=true;
+        img.moveTo(mouseX,mouseY);
+    });
+    $("#draw").mousemove(function(e){
+        var mouseX = e.pageX - this.offsetLeft;
+        var mouseY = e.pageY - this.offsetTop;
+        if(flag){
+            img.lineTo(mouseX,mouseY);
+            img.stroke();
+        }
+    });
+    $("#draw").mouseup(function(e){
+
+        flag=false;
+    });
+
+    function clearr(){
+        img.clearRect(0,0,500,500);
+
+    }
+
+</script>
+</html>

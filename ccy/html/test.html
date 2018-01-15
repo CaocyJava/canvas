@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="../plugin/My97DatePicker/skin/WdatePicker.css">
+    <script src="../plugin/jquery-2.1.1/jquery.min.js"></script>
+    <script src="../plugin/My97DatePicker/WdatePicker.js"></script>
+    <script>
+        function bathePlanShowMp(va){
+            console.log(va);
+        }
+    </script>
+
+</head>
+<body>
+<input type="button" value="haha">
+<input class="Wdate" type="text"  id="txtStartTime" style="width:180px; margin-left:35px;" runat="server" onfocus="WdatePicker({isShowClear:false,readOnly:true,dateFmt:'yyyy-MM-dd',onpicked:function() {javascript:bathePlanShowMp(this.value);}})"/>
+</body>
+</html>

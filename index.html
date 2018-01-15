@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>跳跃的图片</title>
+    <style>
+        *{margin: 0;padding: 0}
+        #container{
+            height: 600px;
+            width: 600px;
+            border: 1px solid #808080;
+            margin: 50px auto;
+            transform-style: preserve-3d;
+            perspective: 12100px;
+        }
+        #ke{
+            display: block;
+            width: 300px;
+            height: 437px;
+            border: 1px solid blue;
+            margin: 50px auto;
+            background: url("ke.jpg") 0px 0px/300px  437px  no-repeat;
+            box-shadow: -7px 10px 10px #333;
+            transform: rotateX(60deg) rotateY(3deg) rotateZ(-25deg);
+            transform-origin: 50% 50% 100px;
+            /*过度动画*/
+            transition: all 1s ease-out;
+        }
+        #ke:hover{
+            box-shadow: -100px -100px 10px #fff;
+            /*对应xyz，0是不旋转，1是旋转，旋转角度*/
+            transform: rotate3D(0,0,0,110deg);
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <a href="" id="ke"></a>
+    </div>
+</body>
+</html>

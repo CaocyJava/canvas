@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <canvas id="star" width="1000" height="1000" style="background-color: #000">
+        您的浏览器不支持canvas标签
+    </canvas>
+</body>
+<script>
+    var cxt = document.getElementById("star").getContext("2d");
+    var flag = 0;
+    //画轨道
+    function track(){
+        for(var i=1;i<=8;i++){
+            cxt.beginPath();
+            cxt.strokeStyle="white";
+            cxt.arc(500,500,i*50,0,360,false);
+            cxt.stroke();
+            cxt.closePath();
+        }
+    }
+    track();
+    //画星球
+    //坐标xy，半径r，起始颜色colorA,结束颜色colorB,公转周期time
+    function star(x,y,r,colorA,colorB,time){
+        cxt.save();
+        cxt.translate(500,500);
+        cxt.rotate(flag*(360/time)*Math.PI/180);
+        console.log(flag*(360/time));
+        cxt.beginPath();
+        cxt.arc(x,y,r,0,360,false);
+        cxt.closePath();
+        var color = cxt.createRadialGradient(x,y,0,x,y,r);
+        color.addColorStop(0,colorA);
+        color.addColorStop(1,colorB);
+        cxt.fillStyle=color;
+        cxt.fill();
+        cxt.restore();
+        flag++;
+    }
+    function move(){
+        cxt.clearRect(0,0,1000,1000);
+        track();
+        star(0,0,20,"blue","red",0);
+        star(0,-50,10,"plum","green",587.70);
+        star(0,-100,15,"yellow","wheat",2224.701);
+        star(0,-150,19,"purple","turquoise",2365.224);
+        star(0,-200,25,"black","teal",3686.98);
+        star(0,-250,27,"yellow","slategray",4332.589);
+        star(0,-300,5,"orange","slateblue",10759.5);
+        star(0,-350,10,"grey","sienna",30799.095);
+        star(0,-400,8,"white","red",60152);
+    }
+
+    setInterval(move,20);
+</script>
+</html>
